@@ -14,6 +14,7 @@ import planetary_computer
 import geopandas as gpd
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+import rioxarray
 
 
 
