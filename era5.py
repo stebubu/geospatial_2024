@@ -106,6 +106,8 @@ def fetch_and_map_sentinel2(location, start_date, end_date):
         limit=1,
         query={"eo:cloud_cover": {"lt": 10}}  # Optional: Filter by cloud cover
     )
+
+
     
     # Get the first matching item
     items = list(search.get_items())
