@@ -107,6 +107,9 @@ def main():
     else:
         factor_sel=1
 
+    varname_Rain = "precipitation_amount_1hour_Accumulation"
+    factor = 1000  # Adjust the factor as necessary
+
     
     # Button to fetch and process the data
     if st.button("Fetch ERA5 Precipitation Data"):
