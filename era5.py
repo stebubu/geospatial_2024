@@ -12,6 +12,8 @@ from datetime import datetime, timedelta
 import pystac_client
 import planetary_computer
 import geopandas as gpd
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 
 
 
@@ -141,6 +143,32 @@ def main():
         
         fig.update_traces(hoverinfo='x+y+z', showscale=True)
         st.plotly_chart(fig, use_container_width=True)  
+
+
+        # Create a figure
+        fig, ax = plt.subplots(figsize=(10, 5), subplot_kw={'projection': ccrs.PlateCarree()})
+
+        # Plot data
+        c = ax.pcolormesh(lon, lat, lower_tercile, transform=ccrs.PlateCarree(), cmap='viridis')
+
+        # Add state boundaries
+        ax.add_feature(cfeature.STATES, edgecolor='black')
+
+        # Add coastlines
+        ax.coastlines()
+
+        # Add color bar
+        plt.colorbar(c, ax=ax, orientation='vertical', label='lower_tercile')
+
+        # Set labels
+        ax.set_xlabel("Longitude")
+        ax.set_ylabel("Latitude")
+
+        # Display using Streamlit
+        st.pyplot(fig)
+
+
+
 
         # Convert to GeoDataFrame (if necessary)
         # Plot with Mapbox overlay
