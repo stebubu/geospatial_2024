@@ -16,7 +16,20 @@ import geopandas as gpd
 
 
 
+def calculate_djf_sum(data_array):
+    # Create a new 'year' coordinate for grouping, shifting December to the next year
+    year_shifted = data_array.time.dt.year + (data_array.time.dt.month == 12)
 
+    # Assign this 'year' coordinate to the DataArray
+    data_array = data_array.assign_coords(djf_year=year_shifted)
+
+    # Select DJF months (Dec of the previous year from the original, Jan and Feb of the current 'djf_year')
+    djf_data = data_array.where(data_array.time.dt.month.isin([1, 2, 12]), drop=True)
+
+    # Now, group by this 'djf_year' and sum to get DJF precipitation sum
+    djf_sum = djf_data.groupby('djf_year').sum(dim="time")
+
+    return djf_sum
 
 
 
