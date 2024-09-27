@@ -149,7 +149,7 @@ def main():
         fig, ax = plt.subplots(figsize=(10, 5), subplot_kw={'projection': ccrs.PlateCarree()})
 
         # Plot data
-        c = ax.pcolormesh(lon, lat, lower_tercile, transform=ccrs.PlateCarree(), cmap='viridis')
+        c = ax.pcolormesh(lon_min, lat_max, lower_tercile, transform=ccrs.PlateCarree(), cmap='viridis')
 
         # Add state boundaries
         ax.add_feature(cfeature.STATES, edgecolor='black')
