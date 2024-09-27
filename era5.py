@@ -147,9 +147,11 @@ def main():
 
         # Create a figure
         fig, ax = plt.subplots(figsize=(10, 5), subplot_kw={'projection': ccrs.PlateCarree()})
+        lon = np.linspace(lon_min, lon_max, lower_tercile.shape[1])  # Replace with actual longitude data
+        lat = np.linspace(lat_min, lat_max, lower_tercile.shape[0])     # Replace with actual latitude data
 
         # Plot data
-        c = ax.pcolormesh(lon_min, lat_max, lower_tercile, transform=ccrs.PlateCarree(), cmap='viridis')
+        c = ax.pcolormesh(lon, lat, lower_tercile, transform=ccrs.PlateCarree(), cmap='viridis')
 
         # Add state boundaries
         ax.add_feature(cfeature.STATES, edgecolor='black')
