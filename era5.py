@@ -222,9 +222,11 @@ def main():
 
         # Display using Streamlit
         st.pyplot(fig)
+
+    select_start_date = st.date_input("Select date", value=datetime(2024, 9, 20))
+    select_end_date = st.date_input("Select date", value=datetime(2024, 9, 22))
     if st.button('Map Sentinel 2'):
-        select_start_date = st.date_input("Select date", value=datetime(2024, 9, 20))
-        select_end_date = st.date_input("Select date", value=datetime(2024, 9, 22))
+        
         location = (lon_min, lat_min, lon_max, lat_max)  # Example bounding box (min_lon, min_lat, max_lon, max_lat) 
         fetch_and_map_sentinel2(location, select_start_date, select_end_date)
 
